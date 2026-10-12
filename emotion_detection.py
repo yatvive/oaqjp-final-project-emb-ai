@@ -1,7 +1,7 @@
 """
 Module de détection des émotions
 """
-
+import json
 import requests
 
 
@@ -30,4 +30,20 @@ def emotion_detector(text_to_analyze):
     # Make a POST request to the API with the payload and headers
     response = requests.post(url, json=input_json, headers=header, timeout=10)
 
-    return response.text
+    # Conversion du texte de la réponse en dictionnaire
+    formatted_response = json.loads(response.text)
+
+    # Extraction des scores des émotions
+    emotions = formatted_response["emotionPredictions"][0]["emotion"]
+
+    # Émotion dominante : celle dont le score est le plus élevé
+    dominant_emotion = max(emotions, key=emotions.get)
+
+    return {
+        "anger": emotions["anger"],
+        "disgust": emotions["disgust"],
+        "fear": emotions["fear"],
+        "joy": emotions["joy"],
+        "sadness": emotions["sadness"],
+        "dominant_emotion": dominant_emotion,
+    }
