@@ -15,13 +15,13 @@ def emot_detector():
     Analyse le texte reçu en paramètre et renvoie les scores des émotions
     ainsi que l'émotion dominante dans un message formaté.
     """
-    text_to_analyze = request.args.get("textToAnalyze")
+    text_to_analyse = request.args.get("textToAnalyse")
 
-    response = emotion_detector(text_to_analyze)
+    response = emotion_detector(text_to_analyse)
 
     # Gestion de l'erreur : entrée vide ou invalide
     if response["dominant_emotion"] is None:
-        return "Texte invalide ! Veuillez réessayer !"
+        return "Invalid text! Please try again!"
 
     return (
         f"Pour l'énoncé donné, la réponse du système est "

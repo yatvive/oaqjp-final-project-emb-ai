@@ -5,7 +5,7 @@ import json
 import requests
 
 
-def emotion_detector(text_to_analyze):
+def emotion_detector(text_to_analyse):
     """
     Détection des émotions d'un texte via l'API Watson et retourne
     l'attribut text de la réponse.
@@ -24,7 +24,7 @@ def emotion_detector(text_to_analyze):
 
     # Create the payload with the text to be analyzed
     input_json = {
-        "raw_document": {"text": text_to_analyze}
+        "raw_document": {"text": text_to_analyse}
         }
 
     # Make a POST request to the API with the payload and headers
