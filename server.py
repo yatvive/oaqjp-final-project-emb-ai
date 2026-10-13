@@ -19,6 +19,10 @@ def emot_detector():
 
     response = emotion_detector(text_to_analyze)
 
+    # Gestion de l'erreur : entrée vide ou invalide
+    if response["dominant_emotion"] is None:
+        return "Texte invalide ! Veuillez réessayer !"
+
     return (
         f"Pour l'énoncé donné, la réponse du système est "
         f"'anger': {response['anger']}, "
